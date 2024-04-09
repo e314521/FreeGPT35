@@ -1,6 +1,20 @@
 {
+  "name": "FreeGPT35",
+  "version": "1.0.0",
+  "description": "FreeGPT35",
+  "main": "app.js",
+  "repository": "https://github.com/e314521/FreeGPT35",
+  "author": "e314521",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "axios": "^1.6.8",
     "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
