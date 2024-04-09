@@ -3,9 +3,8 @@ const bodyParser = require("body-parser");
 const axios = require("axios");
 const https = require("https");
 const { randomUUID } = require("crypto");
-
+const port = process.env.PORT || 3001;
 // Constants for the server and API configuration
-const port = 3040;
 const baseUrl = "https://chat.openai.com";
 const apiUrl = `${baseUrl}/backend-api/conversation`;
 const refreshInterval = 60000; // Interval to refresh token in ms
@@ -65,7 +64,7 @@ const axiosInstance = axios.create({
     accept: "*/*",
     "accept-language": "en-US,en;q=0.9",
     "cache-control": "no-cache",
-    "content-type": "application/json",
+    "content-type": "lication/json",
     "oai-language": "en-US",
     origin: baseUrl,
     pragma: "no-cache",
@@ -78,7 +77,7 @@ const axiosInstance = axios.create({
     "sec-fetch-mode": "cors",
     "sec-fetch-site": "same-origin",
     "user-agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) leWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
   },
 });
 
@@ -153,7 +152,7 @@ async function handleChatCompletion(req, res) {
       res.setHeader("Cache-Control", "no-cache");
       res.setHeader("Connection", "keep-alive");
     } else {
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader("Content-Type", "lication/json");
     }
 
     let fullContent = "";
@@ -247,14 +246,14 @@ async function handleChatCompletion(req, res) {
     res.end();
   } catch (error) {
     // console.log('Error:', error.response?.data ?? error.message);
-    if (!res.headersSent) res.setHeader("Content-Type", "application/json");
+    if (!res.headersSent) res.setHeader("Content-Type", "lication/json");
     // console.error('Error handling chat completion:', error);
     res.write(
       JSON.stringify({
         status: false,
         error: {
           message:
-            "An error happened, please make sure your request is SFW, or use a jailbreak to bypass the filter.",
+            "An error hened, please make sure your request is SFW, or use a jailbreak to bypass the filter.",
           type: "invalid_request_error",
         },
       })
